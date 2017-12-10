@@ -34,7 +34,7 @@
     self.tableView.rowHeight=UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight=100;
     
-    [ZZHttpTool get:@"http://api.change.so/v1/videos.json" params:nil usingCache:NO success:^(NSDictionary *dict) {
+    [ZZHttpTool get:@"http://api.change.so/v1/videos.json?page=1&per_page=29" params:nil usingCache:NO success:^(NSDictionary *dict) {
         NSLog(@"%@",dict);
         NSArray* videos=[dict valueForKey:@"videos"];
         for (NSDictionary* vid in videos) {

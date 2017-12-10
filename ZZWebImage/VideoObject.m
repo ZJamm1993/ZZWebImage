@@ -34,8 +34,6 @@
         _played_count=[[dictionary valueForKey:@"played_count"]integerValue];
         _share_url=[dictionary valueForKey:@"share_url"];
         _tag_list=[dictionary valueForKey:@"tag_list"];
-        _channel=[[ChannelObject alloc]initWithDictionary:[dictionary valueForKey:@"channel"]];
-        _category=[[CategoryObject alloc]initWithDictionary:[dictionary valueForKey:@"category"]];
         
 //        if ([_url rangeOfString:@"app-upgrade-notification"].location!=NSNotFound) {
 //            return nil;

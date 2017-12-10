@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CategoryObject.h"
-#import "ChannelObject.h"
 
 @interface VideoObject : NSObject
 
@@ -35,8 +33,6 @@
 @property NSInteger played_count;
 @property NSString* share_url;
 @property NSArray* tag_list;
-@property ChannelObject* channel;
-@property CategoryObject* category;
 
 @end
 

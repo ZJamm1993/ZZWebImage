@@ -17,4 +17,8 @@
 
 -(void)setImageUrl:(NSString *)url placeHolder:(UIImage*)placeHolder;
 
+-(void)setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder completed:(void(^)(UIImage* image, NSError* error, NSString* imageUrl))completion;
+
+//sd_setImageWithURL:[NSURL URLWithString:[obj description]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL)
+
 @end
