@@ -68,6 +68,7 @@
             request.HTTPBody=[body dataUsingEncoding:NSUTF8StringEncoding];
         }
         
+        NSURLCache* cache=[NSURLCache sharedURLCache];
         if (isGet) {
 //            [cache setMemoryCapacity:2048];
 //            [cache setDiskCapacity:20480];
@@ -75,7 +76,7 @@
             request.cachePolicy=isCache?NSURLRequestReturnCacheDataElseLoad:NSURLRequestReloadIgnoringLocalCacheData;
             
             if (isCache) {
-                NSURLCache* cache=[NSURLCache sharedURLCache];
+                [cache setDiskCapacity:512*1024*1024];
                 NSCachedURLResponse* cacheResp=[cache cachedResponseForRequest:request];
                 NSData* cachedData=cacheResp.data;
                 if (cachedData) {
@@ -100,6 +101,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (data) {
+                    [cache storeCachedResponse:[[NSCachedURLResponse alloc]initWithResponse:response data:data] forRequest:request];
                     if (success) {
                         success(result);
                         

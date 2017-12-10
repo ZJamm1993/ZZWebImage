@@ -8,25 +8,28 @@
 
 #import "ZZWebImageTool.h"
 
-static NSMutableDictionary* sharedCachedImageDictionary;
+//static NSMutableDictionary* sharedCachedImageDictionary;
 
 @implementation ZZWebImageTool
 
 +(void)getImageFromUrl:(NSString *)url success:(void (^)(UIImage *, NSError *))success
 {
-    if (sharedCachedImageDictionary==nil) {
-        sharedCachedImageDictionary=[NSMutableDictionary dictionary];
-    }
-    UIImage* cache=[sharedCachedImageDictionary valueForKey:url];
-    if (cache) {
-        if (success) {
-            success(cache,nil);
-        }
-        return;
-    }
+//    if (sharedCachedImageDictionary==nil) {
+//        sharedCachedImageDictionary=[NSMutableDictionary dictionary];
+//    }
+//    UIImage* cache=[sharedCachedImageDictionary valueForKey:url];
+//    if (cache) {
+//        if (success) {
+//            success(cache,nil);
+//        }
+//        return;
+//    }
+    
     [self requestUrl:url success:^(NSData *data) {
         UIImage* img=[UIImage imageWithData:data];
-        [sharedCachedImageDictionary setValue:img forKey:url];
+        
+//        [sharedCachedImageDictionary setValue:img forKey:url];
+        
         if (success) {
             success(img,nil);
         }
@@ -47,6 +50,7 @@ static NSMutableDictionary* sharedCachedImageDictionary;
     request.cachePolicy=NSURLRequestReturnCacheDataElseLoad;
     
     NSURLCache* cache=[NSURLCache sharedURLCache];
+    [cache setDiskCapacity:512*1024*1024];
     NSCachedURLResponse* cacheResp=[cache cachedResponseForRequest:request];
     NSData* cachedData=cacheResp.data;
     if (cachedData) {
@@ -64,6 +68,7 @@ static NSMutableDictionary* sharedCachedImageDictionary;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data) {
+                [cache storeCachedResponse:[[NSCachedURLResponse alloc]initWithResponse:response data:data] forRequest:request];
                 if (success) {
                     success(data);
                 }
