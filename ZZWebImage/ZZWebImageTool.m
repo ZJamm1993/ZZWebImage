@@ -14,25 +14,15 @@
 
 +(void)getImageFromUrl:(NSString *)url success:(void (^)(UIImage *, NSError *))success
 {
-//    if (sharedCachedImageDictionary==nil) {
-//        sharedCachedImageDictionary=[NSMutableDictionary dictionary];
-//    }
-//    UIImage* cache=[sharedCachedImageDictionary valueForKey:url];
-//    if (cache) {
-//        if (success) {
-//            success(cache,nil);
-//        }
-//        return;
-//    }
-    
     [self requestUrl:url success:^(NSData *data) {
-        UIImage* img=[UIImage imageWithData:data];
-        
-//        [sharedCachedImageDictionary setValue:img forKey:url];
-        
-        if (success) {
-            success(img,nil);
-        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage* img=[UIImage imageWithData:data];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    success(img,nil);
+                }
+            });
+        });
     } failure:^(NSError *error) {
         if (success) {
             success(nil,error);
@@ -46,18 +36,17 @@
     
     NSMutableURLRequest* request=[NSMutableURLRequest requestWithURL:_ur];
     request.HTTPMethod=@"GET";
-
-    request.cachePolicy=NSURLRequestReturnCacheDataElseLoad;
     
     NSURLCache* cache=[NSURLCache sharedURLCache];
     [cache setDiskCapacity:512*1024*1024];
     NSCachedURLResponse* cacheResp=[cache cachedResponseForRequest:request];
     NSData* cachedData=cacheResp.data;
     if (cachedData) {
-        
-        if (success) {
-            success(cachedData);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                success(cachedData);
+            }
+        });
         return;
     }
     
@@ -65,10 +54,11 @@
     NSURLSessionDataTask* dataTast=[session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         
         [session finishTasksAndInvalidate];
-        
+        if (data) {
+            [cache storeCachedResponse:[[NSCachedURLResponse alloc]initWithResponse:response data:data] forRequest:request];
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data) {
-                [cache storeCachedResponse:[[NSCachedURLResponse alloc]initWithResponse:response data:data] forRequest:request];
                 if (success) {
                     success(data);
                 }
