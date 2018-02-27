@@ -34,16 +34,25 @@
 +(void)getImageFromVideoUrl:(NSString *)url success:(void (^)(UIImage *, NSError *))success
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL URLWithString:url] options:nil];
-        float fps = [[[asset tracksWithMediaType:AVMediaTypeVideo] firstObject] nominalFrameRate];
-        AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-        gen.appliesPreferredTrackTransform = YES;
-        CMTime time = CMTimeMakeWithSeconds(1, fps);
-        NSError *error = nil;
-        CMTime actualTime;
-        CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-        UIImage *img = [[UIImage alloc] initWithCGImage:image];
-        CGImageRelease(image);
+        static NSMutableDictionary* _staticVideoThumbImageCache;
+        if (_staticVideoThumbImageCache==nil) {
+            _staticVideoThumbImageCache=[NSMutableDictionary dictionary];
+        }
+        UIImage* img=[_staticVideoThumbImageCache valueForKey:url];
+        
+        if (!img) {
+            AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL URLWithString:url] options:nil];
+            float fps = [[[asset tracksWithMediaType:AVMediaTypeVideo] firstObject] nominalFrameRate];
+            AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+            gen.appliesPreferredTrackTransform = YES;
+            CMTime time = CMTimeMakeWithSeconds(1, fps);
+            NSError *error = nil;
+            CMTime actualTime;
+            CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+            img = [[UIImage alloc] initWithCGImage:image];
+            CGImageRelease(image);
+            [_staticVideoThumbImageCache setValue:img forKey:url];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
