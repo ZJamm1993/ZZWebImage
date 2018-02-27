@@ -13,12 +13,12 @@
 
 @property (nonatomic,strong) NSString* webImageUrl;
 
--(void)setImageUrl:(NSString*)url;
+-(void)zz_setImageUrl:(NSString*)url;
 
--(void)setImageUrl:(NSString *)url placeHolder:(UIImage*)placeHolder;
+-(void)zz_setImageUrl:(NSString *)url placeHolder:(UIImage*)placeHolder;
 
--(void)setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder completed:(void(^)(UIImageView* imageView, UIImage* image, NSError* error, NSString* imageUrl))completion;
+-(void)zz_setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder completed:(void(^)(UIImageView* imageView, UIImage* image, NSError* error, NSString* imageUrl))completion;
 
-//sd_setImageWithURL:[NSURL URLWithString:[obj description]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL)
+-(void)zz_setImageFromVideoUrl:(NSString*)url;
 
 @end

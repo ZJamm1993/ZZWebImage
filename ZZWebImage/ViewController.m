@@ -67,7 +67,7 @@
 {
     MyCell* cell=[tableView dequeueReusableCellWithIdentifier:@"MyCell" forIndexPath:indexPath];
     VideoObject* vi=[self.datasource objectAtIndex:indexPath.row];
-    [cell.image setImageUrl:vi.poster placeHolder:[UIImage imageNamed:@"placeHolder"]];
+    [cell.image zz_setImageFromVideoUrl:vi.url];
     cell.title.text=vi.name;
     cell.desc.text=vi.desc;
     return cell;

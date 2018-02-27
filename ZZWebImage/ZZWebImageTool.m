@@ -7,6 +7,7 @@
 //
 
 #import "ZZWebImageTool.h"
+#import <AVFoundation/AVFoundation.h>
 
 //static NSMutableDictionary* sharedCachedImageDictionary;
 
@@ -28,6 +29,28 @@
             success(nil,error);
         }
     }];
+}
+
++(void)getImageFromVideoUrl:(NSString *)url success:(void (^)(UIImage *, NSError *))success
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL URLWithString:url] options:nil];
+        float fps = [[[asset tracksWithMediaType:AVMediaTypeVideo] firstObject] nominalFrameRate];
+        AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+        gen.appliesPreferredTrackTransform = YES;
+        CMTime time = CMTimeMakeWithSeconds(1, fps);
+        NSError *error = nil;
+        CMTime actualTime;
+        CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+        UIImage *img = [[UIImage alloc] initWithCGImage:image];
+        CGImageRelease(image);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                success(img,nil);
+            }
+        });
+    });
 }
 
 +(void)requestUrl:(NSString *)url success:(void (^)(NSData* successData))success failure:(void (^)(NSError *failureError))failure

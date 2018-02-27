@@ -11,18 +11,18 @@
 
 @implementation UIImageView (ZZWebImage)
 
--(void)setImageUrl:(NSString *)url
+-(void)zz_setImageUrl:(NSString *)url
 {
-    [self setImageUrl:url placeHolder:nil];
+    [self zz_setImageUrl:url placeHolder:nil];
 }
 
--(void)setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder
+-(void)zz_setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder
 {
-    [self setImageUrl:url placeHolder:placeHolder completed:^(UIImageView* imageView, UIImage *image, NSError *error, NSString *imageUrl) {
+    [self zz_setImageUrl:url placeHolder:placeHolder completed:^(UIImageView* imageView, UIImage *image, NSError *error, NSString *imageUrl) {
     }];
 }
 
--(void)setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder completed:(void (^)(UIImageView* imageView, UIImage *, NSError *, NSString *))completion
+-(void)zz_setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder completed:(void (^)(UIImageView* imageView, UIImage *, NSError *, NSString *))completion
 {
     if (placeHolder) {
         self.image=placeHolder;
@@ -39,6 +39,19 @@
                 if (completion) {
                     completion(self,image,error,url);
                 }
+            }
+        }];
+    }
+}
+
+-(void)zz_setImageFromVideoUrl:(NSString *)url
+{
+    self.image=nil;
+    if (url.length>0) {
+        self.webImageUrl=url;
+        [ZZWebImageTool getImageFromVideoUrl:url success:^(UIImage *image, NSError *error) {
+            if (image&&[url isEqualToString:self.webImageUrl]) {
+                self.image=image;
             }
         }];
     }

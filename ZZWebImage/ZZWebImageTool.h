@@ -12,5 +12,6 @@
 @interface ZZWebImageTool : NSObject
 
 +(void)getImageFromUrl:(NSString*)url success:(void(^)(UIImage* image, NSError* error))success;
++(void)getImageFromVideoUrl:(NSString*)url success:(void(^)(UIImage* image, NSError* error))success;
 
 @end
