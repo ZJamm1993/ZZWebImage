@@ -17,7 +17,6 @@
 		3948F2621FDC1B4700449074 /* ZZWebImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3948F2611FDC1B4700449074 /* ZZWebImageTool.m */; };
 		3948F2651FDC1E0400449074 /* UIImageView+ZZWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3948F2641FDC1E0400449074 /* UIImageView+ZZWebImage.m */; };
 		3948F2691FDC21D500449074 /* ZZHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3948F2681FDC21D500449074 /* ZZHttpTool.m */; };
-		3948F2721FDC226500449074 /* VideoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3948F26F1FDC226500449074 /* VideoObject.m */; };
 		3948F2751FDC231C00449074 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3948F2741FDC231C00449074 /* MyCell.m */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +50,6 @@
 		3948F2641FDC1E0400449074 /* UIImageView+ZZWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZZWebImage.m"; sourceTree = "<group>"; };
 		3948F2671FDC21D500449074 /* ZZHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZHttpTool.h; sourceTree = "<group>"; };
 		3948F2681FDC21D500449074 /* ZZHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZHttpTool.m; sourceTree = "<group>"; };
-		3948F26E1FDC226500449074 /* VideoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoObject.h; sourceTree = "<group>"; };
-		3948F26F1FDC226500449074 /* VideoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoObject.m; sourceTree = "<group>"; };
 		3948F2731FDC231C00449074 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
 		3948F2741FDC231C00449074 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +98,6 @@
 				3948F2351FDC1A5300449074 /* AppDelegate.m */,
 				3948F2371FDC1A5300449074 /* ViewController.h */,
 				3948F2381FDC1A5300449074 /* ViewController.m */,
-				3948F26E1FDC226500449074 /* VideoObject.h */,
-				3948F26F1FDC226500449074 /* VideoObject.m */,
 				3948F2731FDC231C00449074 /* MyCell.h */,
 				3948F2741FDC231C00449074 /* MyCell.m */,
 				3948F23A1FDC1A5300449074 /* Main.storyboard */,
@@ -257,7 +252,6 @@
 				3948F2691FDC21D500449074 /* ZZHttpTool.m in Sources */,
 				3948F2651FDC1E0400449074 /* UIImageView+ZZWebImage.m in Sources */,
 				3948F2361FDC1A5300449074 /* AppDelegate.m in Sources */,
-				3948F2721FDC226500449074 /* VideoObject.m in Sources */,
 				3948F2621FDC1B4700449074 /* ZZWebImageTool.m in Sources */,
 				3948F2331FDC1A5300449074 /* main.m in Sources */,
 			);

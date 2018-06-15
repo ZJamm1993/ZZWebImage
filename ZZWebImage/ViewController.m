@@ -10,7 +10,6 @@
 #import "UIImageView+ZZWebImage.h"
 #import "ZZHttpTool.h"
 #import "MyCell.h"
-#import "VideoObject.h"
 
 @interface ViewController ()
 
@@ -34,15 +33,11 @@
     self.tableView.rowHeight=UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight=100;
     
-    [ZZHttpTool get:@"http://api.change.so/v1/videos.json?page=1&per_page=29" params:nil usingCache:YES success:^(NSDictionary *dict) {
+    [ZZHttpTool get:@"https://movie.douban.com/j/search_subjects?type=movie&tag=%E6%AC%A7%E7%BE%8E&page_limit=50&page_start=0" params:nil usingCache:NO success:^(NSDictionary *dict) {
         NSLog(@"%@",dict);
-        NSArray* videos=[dict valueForKey:@"videos"];
-        for (NSDictionary* vid in videos) {
-            VideoObject* vo=[[VideoObject alloc]initWithDictionary:vid];
-            if (vo) {
-                [self.datasource addObject:vo];
-            }
-        }
+        NSArray* subjects=[dict valueForKey:@"subjects"];
+        [self.datasource removeAllObjects];
+        [self.datasource addObjectsFromArray:subjects];
         [self.tableView reloadData];
     } failure:nil];
     // Do any additional setup after loading the view, typically from a nib.
@@ -66,10 +61,10 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyCell* cell=[tableView dequeueReusableCellWithIdentifier:@"MyCell" forIndexPath:indexPath];
-    VideoObject* vi=[self.datasource objectAtIndex:indexPath.row];
-    [cell.image zz_setImageFromVideoUrl:vi.url];
-    cell.title.text=vi.name;
-    cell.desc.text=vi.desc;
+    NSDictionary* dic=[self.datasource objectAtIndex:indexPath.row];
+    cell.title.text=[dic valueForKey:@"title"];
+    [cell.image zz_setImageUrl:[dic valueForKey:@"cover"]];
+    cell.desc.text=[dic valueForKey:@"rate"];
     return cell;
 }
 
