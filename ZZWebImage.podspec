@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   #new
   s.name                = "ZZWebImage"
-  s.version             = "1.0.1"
+  s.version             = "1.0"
   s.summary             = "a simple description"
   s.homepage            = "https://github.com/ZJamm1993/ZZWebImage"
   s.license             = { :type => "MIT", :file => "LICENNSE" }
