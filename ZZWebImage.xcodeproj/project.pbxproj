@@ -79,8 +79,6 @@
 				3948F2611FDC1B4700449074 /* ZZWebImageTool.m */,
 				3948F2631FDC1E0400449074 /* UIImageView+ZZWebImage.h */,
 				3948F2641FDC1E0400449074 /* UIImageView+ZZWebImage.m */,
-				3948F2671FDC21D500449074 /* ZZHttpTool.h */,
-				3948F2681FDC21D500449074 /* ZZHttpTool.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -113,6 +111,8 @@
 				3948F2381FDC1A5300449074 /* ViewController.m */,
 				3948F2731FDC231C00449074 /* MyCell.h */,
 				3948F2741FDC231C00449074 /* MyCell.m */,
+				3948F2671FDC21D500449074 /* ZZHttpTool.h */,
+				3948F2681FDC21D500449074 /* ZZHttpTool.m */,
 				3948F23A1FDC1A5300449074 /* Main.storyboard */,
 				3948F23D1FDC1A5300449074 /* Images.xcassets */,
 				3948F23F1FDC1A5300449074 /* LaunchScreen.xib */,
