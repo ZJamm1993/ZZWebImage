@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.author              = { "ZJamm1993" => "670231925@qq.com" }
   s.platform            = :ios, '8.0'
   s.source              = {:git => "https://github.com/ZJamm1993/ZZWebImage.git"}
-  s.source_files        = "ZZWebImage/Lib", "ZZWebImage/Lib/*.{h,m}"
+  s.source_files        = "README.MD"
   s.requires_arc        = true
   
 end
