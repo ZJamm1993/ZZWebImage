@@ -86,6 +86,7 @@
 		3948F2241FDC1A5300449074 = {
 			isa = PBXGroup;
 			children = (
+				0630475620F841A300F27034 /* Lib */,
 				3948F22F1FDC1A5300449074 /* ZZWebImage */,
 				3948F2491FDC1A5300449074 /* ZZWebImageTests */,
 				3948F22E1FDC1A5300449074 /* Products */,
@@ -104,7 +105,6 @@
 		3948F22F1FDC1A5300449074 /* ZZWebImage */ = {
 			isa = PBXGroup;
 			children = (
-				0630475620F841A300F27034 /* Lib */,
 				3948F2341FDC1A5300449074 /* AppDelegate.h */,
 				3948F2351FDC1A5300449074 /* AppDelegate.m */,
 				3948F2371FDC1A5300449074 /* ViewController.h */,
