@@ -72,6 +72,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0630475620F841A300F27034 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3948F2601FDC1B4700449074 /* ZZWebImageTool.h */,
+				3948F2611FDC1B4700449074 /* ZZWebImageTool.m */,
+				3948F2631FDC1E0400449074 /* UIImageView+ZZWebImage.h */,
+				3948F2641FDC1E0400449074 /* UIImageView+ZZWebImage.m */,
+				3948F2671FDC21D500449074 /* ZZHttpTool.h */,
+				3948F2681FDC21D500449074 /* ZZHttpTool.m */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		3948F2241FDC1A5300449074 = {
 			isa = PBXGroup;
 			children = (
@@ -93,7 +106,7 @@
 		3948F22F1FDC1A5300449074 /* ZZWebImage */ = {
 			isa = PBXGroup;
 			children = (
-				39FD74A21FDCEAFF00743C1A /* ZZWebImage */,
+				0630475620F841A300F27034 /* Lib */,
 				3948F2341FDC1A5300449074 /* AppDelegate.h */,
 				3948F2351FDC1A5300449074 /* AppDelegate.m */,
 				3948F2371FDC1A5300449074 /* ViewController.h */,
@@ -103,8 +116,6 @@
 				3948F23A1FDC1A5300449074 /* Main.storyboard */,
 				3948F23D1FDC1A5300449074 /* Images.xcassets */,
 				3948F23F1FDC1A5300449074 /* LaunchScreen.xib */,
-				3948F2671FDC21D500449074 /* ZZHttpTool.h */,
-				3948F2681FDC21D500449074 /* ZZHttpTool.m */,
 				3948F2301FDC1A5300449074 /* Supporting Files */,
 			);
 			path = ZZWebImage;
@@ -134,17 +145,6 @@
 				3948F24B1FDC1A5400449074 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		39FD74A21FDCEAFF00743C1A /* ZZWebImage */ = {
-			isa = PBXGroup;
-			children = (
-				3948F2601FDC1B4700449074 /* ZZWebImageTool.h */,
-				3948F2611FDC1B4700449074 /* ZZWebImageTool.m */,
-				3948F2631FDC1E0400449074 /* UIImageView+ZZWebImage.h */,
-				3948F2641FDC1E0400449074 /* UIImageView+ZZWebImage.m */,
-			);
-			name = ZZWebImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
